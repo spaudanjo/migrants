@@ -1,0 +1,15 @@
+<div id="map" style="height: 400px"></div>
+
+<script language="javascript" type="text/javascript">
+  var map = new L.Map('map');
+  var cloudmade = new L.TileLayer('http://{s}.tile.cloudmade.com/005e7c081b694ec6bfdb31507369a1a4/997/256/{z}/{x}/{y}.png', {
+    attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://cloudmade.com">CloudMade</a>',
+    maxZoom: 18
+  });
+  var center = new L.LatLng(<%= @event.latitude %> , <%= @event.longitude %>);
+  map.setView(center, 15).addLayer(cloudmade);
+
+  var marker =  new L.Marker(new L.LatLng(<%= @event.latitude %>, <%= @event.longitude %>));
+  map.addLayer(marker);
+  marker.bindPopup("<%= @event.event_place %>");
+</script>

@@ -10,7 +10,6 @@
       </ul>
     </div>
   <% end %>
-
   <div class="control-group">
     <%= f.label :immigrant_id, :class => "control-label" %>
     <div class="controls">
@@ -34,43 +33,12 @@
     <div class="controls">
       <%= f.text_area :event_description, :id => "event_description", :placeholder => "What happened?" %>
     </div>
-    <div id="map" style="height: 400px"></div>
-
-    <script language="javascript" type="text/javascript">
-      var map = new L.Map('map');
-      var cloudmade = new L.TileLayer('http://{s}.tile.cloudmade.com/005e7c081b694ec6bfdb31507369a1a4/997/256/{z}/{x}/{y}.png', {
-        attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://cloudmade.com">CloudMade</a>',
-        maxZoom: 18
-      });
-      map.addLayer(cloudmade);
-
-      var marker, center;
-      var positionHandler = function(e){
-          console.log(e);
-          if(marker){
-            marker.setLatLng(e.latlng);
-          }else{
-            marker = new L.Marker(e.latlng, {draggable: true});
-            marker.on('drag', positionHandler);
-            map.addLayer(marker);
-          }
-        };
-
-      <% if @event.latitude and @event.longitude %>
-        center = new L.LatLng(<%= @event.latitude %>, <%= @event.longitude %>);
-        positionHandler({latlng: center});
-      <% else %>
-        center = new L.LatLng(38.984669,-77.000808);
-      <% end %>
-
-      map.setView(center, 15);
-
-      map.on('click', positionHandler);
-    </script>
   </div>
+
   <div class="form-actions">
     <%= f.submit :class => "btn btn-primary" %>
     <%= link_to 'Back', events_path, :class => "btn" %>
   </div>
+    
   <%= javascript_tag "$(function(){ $('#dp1').datepicker(); });"%>
 <% end %>
