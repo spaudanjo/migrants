@@ -45,27 +45,34 @@
       map.addLayer(cloudmade);
 
       var marker, center;
+      var update_place = function(e){
+        var latlng = e.latlng || e.target.getLatLng();
+        $("#event_event_place").val(latlng.lat+","+latlng.lng);
+      }
       var positionHandler = function(e){
-          console.log(e);
           if(marker){
             marker.setLatLng(e.latlng);
           }else{
             marker = new L.Marker(e.latlng, {draggable: true});
-            marker.on('drag', positionHandler);
+            marker.on('dragend', update_place);
             map.addLayer(marker);
           }
         };
 
+      var zoom = 15;
       <% if @event.latitude and @event.longitude %>
         center = new L.LatLng(<%= @event.latitude %>, <%= @event.longitude %>);
         positionHandler({latlng: center});
       <% else %>
-        center = new L.LatLng(38.984669,-77.000808);
+        // by default center the map to meditereanian sea
+        var center = new L.LatLng(37.6,12.4);
+        zoom = 5;
       <% end %>
 
-      map.setView(center, 15);
+      map.setView(center, zoom);
 
       map.on('click', positionHandler);
+      map.on('click', update_place);
     </script>
   </div>
   <div class="form-actions">
