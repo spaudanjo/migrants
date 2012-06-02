@@ -1,0 +1,33 @@
+<%= form_for(@immigrant) do |f| %>
+  <% if @immigrant.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@immigrant.errors.count, "error") %> prohibited this immigrant from being saved:</h2>
+
+      <ul>
+      <% @immigrant.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :nickname %><br />
+    <%= f.text_field :nickname %>
+  </div>
+  <div class="field">
+    <%= f.label :first_name %><br />
+    <%= f.text_field :first_name %>
+  </div>
+  <div class="field">
+    <%= f.label :last_name %><br />
+    <%= f.text_field :last_name %>
+  </div>
+  <div class="field">
+    <%= f.label :sex %><br />
+    <%= f.check_box :sex %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

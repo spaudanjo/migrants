@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Nickname:</b>
+  <%= @immigrant.nickname %>
+</p>
+
+<p>
+  <b>First name:</b>
+  <%= @immigrant.first_name %>
+</p>
+
+<p>
+  <b>Last name:</b>
+  <%= @immigrant.last_name %>
+</p>
+
+<p>
+  <b>Sex:</b>
+  <%= @immigrant.sex %>
+</p>
+
+
+<%= link_to 'Edit', edit_immigrant_path(@immigrant) %> |
+<%= link_to 'Back', immigrants_path %>

@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  immigrant_id: 1
+  event_time: 2012-06-02 16:47:38
+  event_place: MyString
+  event_description: MyText
+
+two:
+  immigrant_id: 1
+  event_time: 2012-06-02 16:47:38
+  event_place: MyString
+  event_description: MyText
