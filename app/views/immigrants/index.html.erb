@@ -16,7 +16,7 @@
     <td><%= immigrant.nickname %></td>
     <td><%= immigrant.first_name %></td>
     <td><%= immigrant.last_name %></td>
-    <td><%= immigrant.sex %></td>
+    <td><%= immigrant.sex ? "male" : "female" %></td>
     <td><%= link_to 'Show', immigrant %></td>
     <td><%= link_to 'Edit', edit_immigrant_path(immigrant) %></td>
     <td><%= link_to 'Destroy', immigrant, confirm: 'Are you sure?', method: :delete %></td>
