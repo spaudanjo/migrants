@@ -24,8 +24,10 @@
     <%= f.text_field :last_name %>
   </div>
   <div class="field">
-    <%= f.label :sex %><br />
-    <%= f.check_box :sex %>
+    <%= f.radio_button :sex, 'false', :checked => true %>
+    <%= label :sex, 'female' %>
+    <%= f.radio_button :sex, 'true' %>
+    <%= label :sex, 'male' %>
   </div>
   <div class="actions">
     <%= f.submit %>
