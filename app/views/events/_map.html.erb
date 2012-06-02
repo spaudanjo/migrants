@@ -11,7 +11,17 @@
   var marker, center;
   var update_place = function(e){
     var latlng = e.latlng || e.target.getLatLng();
-    $("#event_event_place").val(latlng.lat+","+latlng.lng);
+    var setplace = function(pos){
+      return function(data){
+          if(data && data.length > 1){
+            $("#event_event_place").val(data);
+          }else{
+            $("#event_event_place").val(pos.lat+","+pos.lng);
+          }
+        }
+    };
+    //$.get("/reverse_geocode", {latitude: latlng.latitude, longitude: latlng.longitude}, setplace(latlng));
+    setplace(latlng)(null);
   }
   var positionHandler = function(e){
       if(marker){
@@ -37,4 +47,14 @@
 
   map.on('click', positionHandler);
   map.on('click', update_place);
+
+  var update_map = function(e){
+    $.getJSON("/geocode", {place: $("#event_event_place").val()}, function(data){
+        var newpos = new L.LatLng(data[0], data[1]);
+        positionHandler({latlng: newpos});
+        map.panTo(newpos);
+        });
+  }
+
+  $("#event_event_place").change(update_map);
 </script>
