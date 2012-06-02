@@ -13,7 +13,9 @@
 
   <div class="field">
     <%= f.label :immigrant_id %><br />
-    <%= f.number_field :immigrant_id %>
+    <%# <%= f.number_field :immigrant_id %>
+    <%= collection_select(:immigrant, :immigrant_id, Immigrant.all, :id, :nickname, :prompt => true) %>
+
   </div>
   <div class="field">
     <%= f.label :event_time %><br />
