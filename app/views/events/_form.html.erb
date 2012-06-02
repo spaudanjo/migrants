@@ -1,4 +1,4 @@
-<%= form_for(@event) do |f| %>
+<%= form_for(@event, :html => { :class => "form-horizontal"}) do |f| %>
   <% if @event.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@event.errors.count, "error") %> prohibited this event from being saved:</h2>
@@ -11,25 +11,33 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :immigrant_id %><br />
-    <%# <%= f.number_field :immigrant_id %>
-    <%= collection_select(:immigrant, :immigrant_id, Immigrant.all, :id, :nickname, :prompt => true) %>
-
+  <div class="control-group">
+    <%= f.label :immigrant_id, :class => "control-label" %>
+    <div class="controls">
+      <%= collection_select(:immigrant, :immigrant_id, Immigrant.all, :id, :nickname, :prompt => true) %>
+    </div>
   </div>
-  <div class="field">
-    <%= f.label :event_time %><br />
-    <%= f.datetime_select :event_time %>
+  <div class="control-group">
+    <%= f.label :event_time, :class => "control-label" %>
+    <div class="controls">
+      <%= f.text_field :event_time, :class => "datepicker", :id => "dp1" %>
+    </div>
   </div>
-  <div class="field">
-    <%= f.label :event_place %><br />
-    <%= f.text_field :event_place %>
+  <div class="control-group">
+    <%= f.label :event_place, :class => "control-label", :placeholder => "Where did it happen?" %>
+    <div class="controls">
+      <%= f.text_field :event_place %>
+    </div>
   </div>
-  <div class="field">
-    <%= f.label :event_description %><br />
-    <%= f.text_area :event_description %>
+  <div class="control-group">
+    <%= f.label :event_description, :class => "control-label" %>
+    <div class="controls">
+      <%= f.text_area :event_description, :id => "event_description", :placeholder => "What happened?" %>
+    </div>
   </div>
-  <div class="actions">
-    <%= f.submit %>
+  <div class="form-actions">
+    <%= f.submit :class => "btn btn-primary" %>
+    <%= link_to 'Back', events_path, :class => "btn" %>
   </div>
+  <%= javascript_tag "$(function(){ $('#dp1').datepicker(); });"%>
 <% end %>
