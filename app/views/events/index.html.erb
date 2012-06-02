@@ -1,6 +1,6 @@
 <h1>Listing events</h1>
 
-<div id="map" style="height: 600px"></div>
+<div id="map" style="height: 400px"></div>
 
 <script language="javascript" type="text/javascript">
   var map = new L.Map('map');
@@ -13,9 +13,9 @@
 
   <% @events.each do |event| %>
   {
-    var marker =  new L.Marker(new L.LatLng(<%= event.latitude %>, <%= event.longitude %>), {event_id: <%= event._id %>});
+    var marker =  new L.Marker(new L.LatLng(<%= event.latitude %>, <%= event.longitude %>), {event_link: "<%= url_for event %>"});
     marker.on('click', function(e){
-        console.log(e);
+          window.location = e.target.options.event_link;
         });
     map.addLayer(marker);
   }
