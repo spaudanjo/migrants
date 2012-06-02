@@ -6,10 +6,35 @@
     attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://cloudmade.com">CloudMade</a>',
     maxZoom: 18
   });
-  var center = new L.LatLng(<%= @event.latitude %> , <%= @event.longitude %>);
-  map.setView(center, 15).addLayer(cloudmade);
+  map.addLayer(cloudmade);
 
-  var marker =  new L.Marker(new L.LatLng(<%= @event.latitude %>, <%= @event.longitude %>));
-  map.addLayer(marker);
-  marker.bindPopup("<%= @event.event_place %>");
+  var marker, center;
+  var update_place = function(e){
+    var latlng = e.latlng || e.target.getLatLng();
+    $("#event_event_place").val(latlng.lat+","+latlng.lng);
+  }
+  var positionHandler = function(e){
+      if(marker){
+        marker.setLatLng(e.latlng);
+      }else{
+        marker = new L.Marker(e.latlng, {draggable: true});
+        marker.on('dragend', update_place);
+        map.addLayer(marker);
+      }
+    };
+
+  var zoom = 15;
+  <% if @event.latitude and @event.longitude %>
+    center = new L.LatLng(<%= @event.latitude %>, <%= @event.longitude %>);
+    positionHandler({latlng: center});
+  <% else %>
+    // by default center the map to meditereanian sea
+    var center = new L.LatLng(37.6,12.4);
+    zoom = 5;
+  <% end %>
+
+  map.setView(center, zoom);
+
+  map.on('click', positionHandler);
+  map.on('click', update_place);
 </script>

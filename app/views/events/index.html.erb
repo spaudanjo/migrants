@@ -8,18 +8,22 @@
     attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://cloudmade.com">CloudMade</a>',
     maxZoom: 18
   });
-  /* center the map to meditereanian sea */
+  // by default center the map to meditereanian sea
   var center = new L.LatLng(37.6,12.4);
   map.setView(center, 5).addLayer(cloudmade);
 
+  var bounds = new L.LatLngBounds();
   <% @events.each do |event| %>
   {
-    var marker =  new L.Marker(new L.LatLng(<%= event.latitude %>, <%= event.longitude %>), {event_link: "<%= url_for event %>"});
+    var pos = new L.LatLng(<%= event.latitude %>, <%= event.longitude %>);
+    var marker =  new L.Marker(pos, {event_link: "<%= url_for event %>"});
+    bounds.extend(pos);
     marker.on('click', function(e){
           window.location = e.target.options.event_link;
         });
     map.addLayer(marker);
   }
+  map.fitBounds(bounds);
   <% end %>
 </script>
 
