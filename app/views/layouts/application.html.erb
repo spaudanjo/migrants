@@ -6,7 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><%= content_for?(:title) ? yield(:title) : "migrants" %></title>
     <meta name="description" content="">
-    <meta name="author" content="">
+    <meta name="author" content="Eris Discordia">
+    <script src="/leaflet/dist/leaflet.js"></script>
+    <link rel="stylesheet" href="/leaflet/dist/leaflet.css"/>
     <%= stylesheet_link_tag    "application", :media => "all" %>
     <%= javascript_include_tag "application" %>
     <%= csrf_meta_tags %>
