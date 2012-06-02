@@ -1,9 +1,16 @@
 Migrants::Application.routes.draw do
+  get "geocode/geocode"
+
+  get "geocode/reverse_geocode"
+
   resources :events
 
   resources :immigrants
 
   root :to => 'events#index'
+
+  get '/geocode' => 'geocode#geocode'
+  get '/reverse_geocode' => 'geocode#reverse_geocode'
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
