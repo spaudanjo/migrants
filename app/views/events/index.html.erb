@@ -13,7 +13,7 @@
 
   <% @events.each do |event| %>
   {
-    var marker =  new L.Marker(new L.LatLng(<% event.latitude %>, <% event.longitude %>), {event_id: <% event.event_id %>});
+    var marker =  new L.Marker(new L.LatLng(<%= event.latitude %>, <%= event.longitude %>), {event_id: <%= event._id %>});
     marker.on('click', function(e){
         console.log(e);
         });
