@@ -8,8 +8,9 @@
     attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://cloudmade.com">CloudMade</a>',
     maxZoom: 18
   });
-  var center = new L.LatLng(38.984669,-77.000808);
-  map.setView(center, 15).addLayer(cloudmade);
+  /* center the map to meditereanian sea */
+  var center = new L.LatLng(37.6,12.4);
+  map.setView(center, 5).addLayer(cloudmade);
 
   <% @events.each do |event| %>
   {

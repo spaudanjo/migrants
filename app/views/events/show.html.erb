@@ -1,5 +1,27 @@
 <p id="notice"><%= notice %></p>
+<div class="row">
+  <div class="span7">
+    <p>
+      <b>Immigrant:</b>
+      <%= @event.immigrant_id %>
+    </p>
 
+    <p>
+      <b>Event time:</b>
+      <%= @event.event_time %>
+    </p>
+
+    <p>
+      <b>Event place:</b>
+      <%= @event.event_place %>
+    </p>
+
+    <p>
+      <b>Event description:</b>
+      <%= @event.event_description %>
+    </p>
+  </div> <!-- /span7 -->
+  <div class="span5">
 <div id="map" style="height: 400px"></div>
 
 <script language="javascript" type="text/javascript">
@@ -15,27 +37,8 @@
   map.addLayer(marker);
   marker.bindPopup("<%= @event.event_place %>");
 </script>
-
-<p>
-  <b>Immigrant:</b>
-  <%= @event.immigrant_id %>
-</p>
-
-<p>
-  <b>Event time:</b>
-  <%= @event.event_time %>
-</p>
-
-<p>
-  <b>Event place:</b>
-  <%= @event.event_place %>
-</p>
-
-<p>
-  <b>Event description:</b>
-  <%= @event.event_description %>
-</p>
-
+  </div><!-- /span5 -->
+</div><!-- /row -->
 
 <%= link_to 'Edit', edit_event_path(@event) %> |
 <%= link_to 'Back', events_path %>
