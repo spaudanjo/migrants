@@ -3,6 +3,5 @@ class Event < ActiveRecord::Base
   belongs_to :immigrant
   
   geocoded_by :event_place
-  reverse_geocoded_by :latitude, :longitude
-  after_validation :geocode, :reverse_geocode
+  after_validation :geocode
 end
