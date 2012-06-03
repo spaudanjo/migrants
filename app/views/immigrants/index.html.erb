@@ -1,4 +1,4 @@
-<h1>Listing immigrants</h1>
+<h1>Listing Migrants</h1>
 
 <table class="table">
   <tr>
@@ -18,7 +18,7 @@
     <td><%= immigrant.last_name %></td>
     <td><%= immigrant.sex ? "male" : "female" %></td>
     <td><a href="<%= url_for immigrant %>"><i class="icon-info-sign"></i> Show</a> </td>
-    <td><a href="<%= url_for edit_event_path(immigrant) %>"><i class="icon-edit"></i> Edit</a></td>
+    <td><a href="<%= url_for edit_immigrant_path(immigrant) %>"><i class="icon-edit"></i> Edit</a></td>
     <td><i class="icon-minus-sign"></i><%= link_to 'Delete', immigrant, confirm: 'Are you sure?', method: :delete %></td>
   </tr>
 <% end %>
@@ -26,4 +26,4 @@
 
 <br />
 
-<a href="<%= url_for new_immigrant_path %>" class="btn"><i class="icon-plus-sign"></i> New Immigrant</a>
+<a href="<%= url_for new_immigrant_path %>" class="btn"><i class="icon-plus-sign"></i> New Migrant</a>
