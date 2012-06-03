@@ -1,5 +1,36 @@
 <p id="notice"><%= notice %></p>
 
+<div id="map" style="height: 400px"></div>
+
+<script language="javascript" type="text/javascript">
+  var map = new L.Map('map');
+  var cloudmade = new L.TileLayer('http://{s}.tile.cloudmade.com/005e7c081b694ec6bfdb31507369a1a4/997/256/{z}/{x}/{y}.png', {
+    attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://cloudmade.com">CloudMade</a>',
+    maxZoom: 18
+  });
+  // by default center the map to meditereanian sea
+  var center = new L.LatLng(37.6,12.4);
+  map.setView(center, 5).addLayer(cloudmade);
+
+  var bounds = new L.LatLngBounds();
+  <% @immigrant.events.each do |event| %>
+    <% if event.latitude and event.longitude %>
+      {
+        var pos = new L.LatLng(<%= event.latitude %>, <%= event.longitude %>);
+        var marker =  new L.Marker(pos, {event_link: "<%= url_for event %>"});
+        console.log(bounds);
+        bounds.extend(pos);
+        marker.on('click', function(e){
+              window.location = e.target.options.event_link;
+            });
+        map.addLayer(marker);
+      }
+    <% end %>
+  <% end %>
+  console.log(bounds);
+  map.fitBounds(bounds);
+</script>
+
 <p>
   <b>Nickname:</b>
   <%= @immigrant.nickname %>
@@ -19,6 +50,32 @@
   <b>Sex:</b>
   <%= @immigrant.sex ? "male" : "female" %>
 </p>
+
+<table id="event_table" class="table">
+  <tr>
+    <th>Type</th>
+    <th>Event time</th>
+    <th>Event place</th>
+    <th>Event description</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+  <% @immigrant.events.each do |event| %>
+    <tr>
+      <td>
+          <span class="classification_<%= event.classification %>"><%= event.classification %></span>
+      </td>
+      <td><%= event.event_time %></td>
+      <td><%= event.event_place %></td>
+      <td><%= event.event_description.lines.first.truncate 30 if event.event_description.respond_to? :truncate and event.event_description.respond_to? :lines%></td>
+      <td><a href="<%= url_for event %>"><i class="icon-info-sign"></i> Show</a> </td>
+      <td><a href="<%= url_for edit_event_path(event) %>"><i class="icon-edit"></i> Edit</a></td>
+      <td><i class="icon-minus-sign"></i><%= link_to 'Delete', event, confirm: 'Are you sure?', method: :delete %></td>
+    </tr>
+  <% end %>
+</table>
 
 
 <%= link_to 'Back', immigrants_path, :class => "btn" %>

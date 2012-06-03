@@ -11,6 +11,10 @@ class ImmigrantsController < ApplicationController
     end
   end
 
+  def events
+    render :text => Immigrant.find(params[:id]).events.to_json
+  end
+
   # GET /immigrants/1
   # GET /immigrants/1.json
   def show
