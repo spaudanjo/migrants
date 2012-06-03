@@ -44,7 +44,7 @@
       <td>
           <span class="classification_<%= event.classification %>"><%= event.classification %></span>
       </td>
-      <td><%= event.immigrant_id %></td>
+      <td><%= event.immigrant.nickname unless event.immigrant.nil? %></td>
       <td><%= event.event_time %></td>
       <td><%= event.event_place %></td>
       <td><%= event.event_description.lines.first.truncate 30 if event.event_description.respond_to? :truncate and event.event_description.respond_to? :lines%></td>
