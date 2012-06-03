@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120603075139) do
+ActiveRecord::Schema.define(:version => 20120603095305) do
 
   create_table "events", :force => true do |t|
     t.integer  "immigrant_id"
@@ -22,7 +22,7 @@ ActiveRecord::Schema.define(:version => 20120603075139) do
     t.datetime "updated_at",        :null => false
     t.float    "longitude"
     t.float    "latitude"
-    t.string   "type"
+    t.string   "classification"
     t.string   "source"
   end
 
@@ -31,6 +31,11 @@ ActiveRecord::Schema.define(:version => 20120603075139) do
     t.string   "first_name"
     t.string   "last_name"
     t.boolean  "sex"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "uploads", :force => true do |t|
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end

@@ -3,7 +3,7 @@
   <div class="span7">
     <p>
       <b>Immigrant:</b>
-      <%= @event.immigrant_id %>
+      <%= @event.immigrant.nickname unless @event.immigrant.nil? %>
     </p>
 
     <p>
