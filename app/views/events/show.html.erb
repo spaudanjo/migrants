@@ -26,5 +26,6 @@
   </div><!-- /span5 -->
 </div><!-- /row -->
 
-<%= link_to 'Edit', edit_event_path(@event) %> |
-<%= link_to 'Back', events_path %>
+<%= link_to 'Back', events_path, :class => "btn" %>
+<a href="<%= url_for edit_event_path(@event) %>" class="btn"><i class="icon-edit"></i> Edit Event</a>
+

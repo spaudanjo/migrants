@@ -27,8 +27,9 @@
   <% end %>
 </script>
 
-<table id="event_table">
+<table id="event_table" class="table">
   <tr>
+    <th>Type</th>
     <th>Immigrant</th>
     <th>Event time</th>
     <th>Event place</th>
@@ -40,6 +41,7 @@
 
   <% @events.each do |event| %>
     <tr>
+      <td><%= event.type %></td>
       <td><%= event.immigrant_id %></td>
       <td><%= event.event_time %></td>
       <td><%= event.event_place %></td>
