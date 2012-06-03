@@ -27,7 +27,7 @@
   <% end %>
 </script>
 
-<table>
+<table id="event_table">
   <tr>
     <th>Immigrant</th>
     <th>Event time</th>
@@ -43,14 +43,14 @@
       <td><%= event.immigrant_id %></td>
       <td><%= event.event_time %></td>
       <td><%= event.event_place %></td>
-      <td><%= event.event_description %></td>
-      <td><%= link_to 'Show', event %></td>
-      <td><%= link_to 'Edit', edit_event_path(event) %></td>
-      <td><%= link_to 'Destroy', event, confirm: 'Are you sure?', method: :delete %></td>
+      <td><%= event.event_description.truncate 30 %></td>
+      <td><a href="<%= url_for event %>"><i class="icon-info-sign"></i> Show</a> </td>
+      <td><a href="<%= url_for edit_event_path(event) %>"><i class="icon-edit"></i> Edit</a></td>
+      <td><i class="icon-minus-sign"></i><%= link_to 'Delete', event, confirm: 'Are you sure?', method: :delete %></td>
     </tr>
   <% end %>
 </table>
 
 <br />
 
-<%= link_to 'New Event', new_event_path %>
+<a href="<%= url_for new_event_path %>" class="btn"><i class="icon-plus-sign"></i> Add New Event</a>

@@ -3,8 +3,8 @@ class EventsController < ApplicationController
   # GET /events
   # GET /events.json
   def index
+    Event.connection.clear_query_cache
     @events = Event.all
-
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @events }
