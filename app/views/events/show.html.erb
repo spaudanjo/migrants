@@ -3,7 +3,7 @@
   <div class="span7">
     <p>
       <b>Immigrant:</b>
-      <%= @event.immigrant_id %>
+      <%= @event.immigrant.nickname unless @event.immigrant.nil? %>
     </p>
 
     <p>
@@ -18,7 +18,7 @@
 
     <p>
       <b>Event description:</b>
-      <%= BlueCloth.new(@event.event_description).to_html.html_safe %>
+      <%= BlueCloth.new(@event.event_description).to_html.gsub(/!\{(http:\/\/)?(www\.)?youtube\.[a-z]{2,3}\/watch\?v=([a-zA-Z0-9_-]+)\}/i, '<iframe id="ytplayer" type="text/html" width="640" height="390" src="http://www.youtube.com/embed/\\3" frameborder="0"></iframe>').html_safe %>
     </p>
   </div> <!-- /span7 -->
   <div class="span5">
@@ -26,5 +26,6 @@
   </div><!-- /span5 -->
 </div><!-- /row -->
 
-<%= link_to 'Edit', edit_event_path(@event) %> |
-<%= link_to 'Back', events_path %>
+<%= link_to 'Back', events_path, :class => "btn" %>
+<a href="<%= url_for edit_event_path(@event) %>" class="btn"><i class="icon-edit"></i> Edit Event</a>
+

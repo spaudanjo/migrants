@@ -1,6 +1,6 @@
 <h1>Listing immigrants</h1>
 
-<table>
+<table class="table">
   <tr>
     <th>Nickname</th>
     <th>First name</th>
@@ -17,13 +17,13 @@
     <td><%= immigrant.first_name %></td>
     <td><%= immigrant.last_name %></td>
     <td><%= immigrant.sex ? "male" : "female" %></td>
-    <td><%= link_to 'Show', immigrant %></td>
-    <td><%= link_to 'Edit', edit_immigrant_path(immigrant) %></td>
-    <td><%= link_to 'Destroy', immigrant, confirm: 'Are you sure?', method: :delete %></td>
+    <td><a href="<%= url_for immigrant %>"><i class="icon-info-sign"></i> Show</a> </td>
+    <td><a href="<%= url_for edit_event_path(immigrant) %>"><i class="icon-edit"></i> Edit</a></td>
+    <td><i class="icon-minus-sign"></i><%= link_to 'Delete', immigrant, confirm: 'Are you sure?', method: :delete %></td>
   </tr>
 <% end %>
 </table>
 
 <br />
 
-<%= link_to 'New Immigrant', new_immigrant_path %>
+<a href="<%= url_for new_immigrant_path %>" class="btn"><i class="icon-plus-sign"></i> New Immigrant</a>

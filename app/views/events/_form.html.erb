@@ -14,7 +14,7 @@
   <div class="control-group">
     <%= f.label :immigrant_id, :class => "control-label" %>
     <div class="controls">
-      <%= collection_select(:immigrant, :immigrant_id, Immigrant.all, :id, :nickname, :prompt => true) %>
+      <%= f.collection_select( :immigrant_id, Immigrant.all, :id, :nickname, :prompt => true) %>
     </div>
   </div>
   <div class="control-group">
@@ -37,6 +37,14 @@
     <%= f.label :event_description, :class => "control-label" %>
     <div class="controls">
       <%= f.text_area :event_description, :id => "event_description", :placeholder => "What happened?" %>
+      <div class="hint">The first line will be displayed as description in the event list. You can use markdown for markup, to embed a youtube video type <code>!{youtube url}</code>.</div>
+    </div>
+  </div>
+  
+  <div class="control-group">
+  	 <%= f.label :classification, :class => "control-label" %>
+  	 <div class="controls">
+    	<%= f.select :classification, Event.EVENT_CLASSIFICATIONS %>  
     </div>
   </div>
   <div class="form-actions">
