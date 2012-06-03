@@ -17,6 +17,11 @@ class EventsController < ApplicationController
     end
   end
 
+
+  def index_all_events
+    render :text => "jojojo"
+  end
+
   # GET /events/1
   # GET /events/1.json
   def show

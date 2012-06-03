@@ -3,15 +3,11 @@ Migrants::Application.routes.draw do
 
   get "geocode/reverse_geocode"
 
-  # resources :events
-
-  # resources :immigrants
-
   resources :immigrants do
-    resources :events
+    # resources :events
   end
-
-  resources :events
+  # resources :events, :only => :index_all_events
+  get "events" => "events#index_all_events"
 
   root :to => 'events#index'
 
