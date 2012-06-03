@@ -15,13 +15,15 @@
   var bounds = new L.LatLngBounds();
   <% @immigrant.events.each do |event| %>
   {
-    var pos = new L.LatLng(<%= event.latitude || 0 %>, <%= event.longitude || 0%>);
-    var marker =  new L.Marker(pos, {event_link: "<%= url_for event %>"});
-    bounds.extend(pos);
-    marker.on('click', function(e){
-          window.location = e.target.options.event_link;
-        });
-    map.addLayer(marker);
+    <% if event.latitude and event.longitude %>
+      var pos = new L.LatLng(<%= event.latitude %>, <%= event.longitude %>);
+      var marker =  new L.Marker(pos, {event_link: "<%= url_for event %>"});
+      bounds.extend(pos);
+      marker.on('click', function(e){
+            window.location = e.target.options.event_link;
+          });
+      map.addLayer(marker);
+    <% end %>
   }
   map.fitBounds(bounds);
   <% end %>
