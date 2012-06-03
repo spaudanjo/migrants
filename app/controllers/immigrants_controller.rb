@@ -11,6 +11,11 @@ class ImmigrantsController < ApplicationController
     end
   end
 
+  def events
+    #FIXME
+    render :text => Immigrant.find(params[:id]).events
+  end
+
   # GET /immigrants/1
   # GET /immigrants/1.json
   def show

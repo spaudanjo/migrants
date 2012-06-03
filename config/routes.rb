@@ -9,6 +9,8 @@ Migrants::Application.routes.draw do
 
   root :to => 'events#index'
 
+  match "immigrants/:id/events" => "immigrants#events"
+
   get '/geocode' => 'geocode#geocode'
   get '/reverse_geocode' => 'geocode#reverse_geocode'
   get '/geocode_search' => 'geocode#geocode_search'
