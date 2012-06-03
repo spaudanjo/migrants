@@ -41,7 +41,9 @@
 
   <% @events.each do |event| %>
     <tr>
-      <td><%= event.type %></td>
+      <td>
+          <span class="classification_<%= event.classification %>"><%= event.classification %></span>
+      </td>
       <td><%= event.immigrant_id %></td>
       <td><%= event.event_time %></td>
       <td><%= event.event_place %></td>
