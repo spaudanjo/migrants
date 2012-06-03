@@ -9,4 +9,8 @@ class GeocodeController < ApplicationController
   def reverse_geocode
     render :text => Geocoder.address([params[:latitude],params[:longitude]])
   end
+
+  def geocode_search
+    render :text => Geocoder.search(params[:place]).map{|match| match.address}
+  end
 end
