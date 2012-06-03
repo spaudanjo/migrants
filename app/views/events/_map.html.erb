@@ -14,9 +14,9 @@
     var setplace = function(pos){
       return function(data){
           if(data && data.length > 1){
-            $("#event_event_place").val(data);
+            $("#event_place").val(data);
           }else{
-            $("#event_event_place").val(pos.lat+","+pos.lng);
+            $("#event_place").val(pos.lat+","+pos.lng);
           }
         }
     };
