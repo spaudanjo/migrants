@@ -18,6 +18,7 @@
       {
         var pos = new L.LatLng(<%= event.latitude %>, <%= event.longitude %>);
         var marker =  new L.Marker(pos, {event_link: "<%= url_for event %>"});
+        console.log(bounds);
         bounds.extend(pos);
         marker.on('click', function(e){
               window.location = e.target.options.event_link;
@@ -26,6 +27,7 @@
       }
     <% end %>
   <% end %>
+  console.log(bounds);
   map.fitBounds(bounds);
 </script>
 
