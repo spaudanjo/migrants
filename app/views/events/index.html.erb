@@ -27,8 +27,9 @@
   <% end %>
 </script>
 
-<table id="event_table">
+<table id="event_table" class="table">
   <tr>
+    <th>Type</th>
     <th>Immigrant</th>
     <th>Event time</th>
     <th>Event place</th>
@@ -40,10 +41,13 @@
 
   <% @events.each do |event| %>
     <tr>
+      <td>
+          <span class="classification_<%= event.classification %>"><%= event.classification %></span>
+      </td>
       <td><%= event.immigrant_id %></td>
       <td><%= event.event_time %></td>
       <td><%= event.event_place %></td>
-      <td><%= event.event_description.truncate 30 %></td>
+      <td><%= event.event_description.lines.first.truncate 30 if event.event_description.respond_to? :truncate and event.event_description.respond_to? :lines%></td>
       <td><a href="<%= url_for event %>"><i class="icon-info-sign"></i> Show</a> </td>
       <td><a href="<%= url_for edit_event_path(event) %>"><i class="icon-edit"></i> Edit</a></td>
       <td><i class="icon-minus-sign"></i><%= link_to 'Delete', event, confirm: 'Are you sure?', method: :delete %></td>

@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
   
-  # TODO: Horrible hack! Investigate why activerecord is not invalidate the cache!
+  # FIXME: Horrible hack! Investigate why activerecord is not invalidate the cache!
   before_filter :invalidate_cache
 
   private

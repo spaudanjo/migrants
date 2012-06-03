@@ -7,6 +7,17 @@
 	height: 200px;
 }
 
-#event_table tr td {
-	border: 1px solid #ddd;
+.classification_other {
+	color: gray;
+}
+
+.classification_detained {
+	color: yellow;
+}
+.classification_detained {
+	color: orange;
+}
+
+.classification_torture {
+	color: red;
 }
