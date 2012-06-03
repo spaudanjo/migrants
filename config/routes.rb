@@ -11,6 +11,7 @@ Migrants::Application.routes.draw do
 
   get '/geocode' => 'geocode#geocode'
   get '/reverse_geocode' => 'geocode#reverse_geocode'
+  get '/geocode_search' => 'geocode#geocode_search'
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
