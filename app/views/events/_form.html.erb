@@ -12,7 +12,7 @@
   <% end %>
 
   <div class="control-group">
-    <%= f.label :immigrant_id, :class => "control-label" %>
+    <%= f.label :migrant, :class => "control-label" %>
     <div class="controls">
       <%= f.collection_select( :immigrant_id, Immigrant.all, :id, :nickname, :prompt => true) %>
     </div>
@@ -30,7 +30,7 @@
   <div class="control-group">
     <%= f.label :event_place, :class => "control-label", :placeholder => "Where did it happen?" %>
     <div class="controls">
-      <%= f.text_field :event_place %>
+      <%= f.text_field :event_place, :id => "event_place" %>
     </div>
   </div>
   <div class="control-group">
@@ -52,4 +52,21 @@
     <%= link_to 'Back', events_path, :class => "btn" %>
   </div>
   <%= javascript_tag "$(function(){ $('#dp1').datepicker(); });"%>
+  <script type="text/javascript" language="javascript">
+    var geotypeahead_ajax;
+    $('#event_place').typeahead({
+      source: function(typeahead, query){
+        if(geotypeahead_ajax){
+          geotypeahead_ajax.abort();
+        } 
+        geotypeahead_ajax = $.getJSON("/geocode_search", {place: $("#event_place").val()}, function(data){
+          console.log(data);
+          typeahead.process(data);
+        });
+      },
+      matcher: function(item){
+        return true;
+      }
+    });
+  </script>
 <% end %>
