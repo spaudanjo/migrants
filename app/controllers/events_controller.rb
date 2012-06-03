@@ -4,7 +4,13 @@ class EventsController < ApplicationController
   # GET /events.json
   def index
     Event.connection.clear_query_cache
-    @events = Event.all
+    Immigrant.connection.clear_query_cache
+    # @events = Event.all
+
+    @immigrant = Immigrant.find(params[:immigrant_id])
+    # @events = Event.all
+    @events = @immigrant.events
+
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @events }
