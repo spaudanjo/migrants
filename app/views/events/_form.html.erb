@@ -12,7 +12,7 @@
   <% end %>
 
   <div class="control-group">
-    <%= f.label :immigrant_id, :class => "control-label" %>
+    <%= f.label :migrant, :class => "control-label" %>
     <div class="controls">
       <%= f.collection_select( :immigrant_id, Immigrant.all, :id, :nickname, :prompt => true) %>
     </div>
