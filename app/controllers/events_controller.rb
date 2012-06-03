@@ -8,18 +8,16 @@ class EventsController < ApplicationController
     # @events = Event.all
 
     @immigrant = Immigrant.find(params[:immigrant_id])
-    # @events = Event.all
     @events = @immigrant.events
-
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @events }
     end
   end
 
-
   def index_all_events
-    render :text => "jojojo"
+    @events = Event.all
+    render :template => "events/index_for_immigrant"
   end
 
   # GET /events/1

@@ -4,7 +4,7 @@ Migrants::Application.routes.draw do
   get "geocode/reverse_geocode"
 
   resources :immigrants do
-    # resources :events
+    resources :events
   end
   # resources :events, :only => :index_all_events
   get "events" => "events#index_all_events"
