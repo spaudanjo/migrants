@@ -12,8 +12,7 @@ class ImmigrantsController < ApplicationController
   end
 
   def events
-    #FIXME
-    render :text => Immigrant.find(params[:id]).events
+    render :text => Immigrant.find(params[:id]).events.to_json
   end
 
   # GET /immigrants/1
