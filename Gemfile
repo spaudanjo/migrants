@@ -9,8 +9,12 @@ group :production do
   gem 'pg'
 end
 
-group :development, :test do 
+group :development, :test do
   gem 'sqlite3'
+end
+
+group :test, :development do
+  gem "rspec-rails"
 end
 
 gem 'geocoder'
