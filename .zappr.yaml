@@ -1,0 +1,26 @@
+approvals:
+  # PR needs at least 4 approvals
+  minimum: 1
+  # approval = comment that matches this regex
+  pattern: "jup"
+  veto:
+    pattern: "^(:\\-1:|👎)$"
+  from:
+    # commenter must be either one of:
+    # a public zalando org member
+    orgs:
+      - zalando
+    # a collaborator of the repo
+    collaborators: true
+    # this guy
+    users:
+      - spaudanjo
+autobranch:
+  # things in curly brackets are variables that
+  # will be replaced. possible variables:
+  # - number: the issue number
+  # - title: the issue title
+  # - labels: the labels of the issue at opening time
+  pattern: "{number}-{title}"
+  # restrict branch name to maximum this many characters
+  length: 60
