@@ -15,6 +15,24 @@ approvals:
     # this guy
     users:
       - spaudanjo
+  groups:
+    # this defines a "zalando" approver group
+    maxhomealone:
+      # where the approval check will fail if there
+      # is less than 1 approval from it
+      minimum: 1
+      # the group includes every public zalando org member
+      from:
+        users:
+          - mfellner
+    nikolaushomealone:
+      # where the approval check will fail if there
+      # is less than 1 approval from it
+      minimum: 1
+      # the group includes every public zalando org member
+      from:
+        users:
+          - prayerslayer
 autobranch:
   # things in curly brackets are variables that
   # will be replaced. possible variables:
